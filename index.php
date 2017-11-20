@@ -390,8 +390,9 @@ function tabletsCompare($tablet1, $tablet2){
 	
 	if ($tablet1['prices']['amount'] == $tablet2['prices']['amount']){
 		return 0;
+	} else {
+		return ($tablet2['prices']['amount']<$tablet1['prices']['amount'])? 1:-1;
 	}
-	return ($tablet2['prices']['amount']<$tablet1['prices']['amount'])? 1:-1;
 }
 
 usort ($data, 'tabletsCompare');
@@ -402,9 +403,11 @@ $max=0;
 $name=' ';
 
 Foreach ($data as $tablet){
-	if (htmlspecialchars($tablet['offersCount'])>$max){
-		$max=htmlspecialchars($tablet['offersCount']);
-		$name=htmlspecialchars($tablet['vendor']);
+	
+	if (($tablet['offersCount'])>$max){
+		
+		$max=($tablet['offersCount']);
+		$name=($tablet['vendor']);
 	}
 }
 echo "<p> Максимальное число предложений: $max";
@@ -415,24 +418,28 @@ echo "<p> От производителя: $name";
 
 foreach ($data as $tablet){
 	
-if ($name==htmlspecialchars($tablet['vendor'])){
+	if ($name==($tablet['vendor'])){
 	
-	echo '<H2> Общие характеристики планшета: </H2>';
-	echo '<p><img src="'.htmlspecialchars($tablet['mainPhoto']['url']).'" width="100"></p>';
-	echo "<p class='large-group'>"."Планшет ".htmlspecialchars( $tablet ['name'] )."<br>"."Цена ".
-	htmlspecialchars($tablet ['prices']['amount'])."<br>"."Производитель ". htmlspecialchars($tablet ['vendor']).
-	"<br>"."Количество предложений ".htmlspecialchars( $tablet ['offersCount'])."</p>"; 
-	echo "<br> <a href='".htmlspecialchars($tablet['link'])."'>Подробная информация на яндекс-маркете</a>";
+		echo '<H2> Общие характеристики планшета: </H2>';
+		echo '<p><img src="'.htmlspecialchars($tablet['mainPhoto']['url']).'" width="100"></p>';
+		echo "<p class='large-group'>"."Планшет ".htmlspecialchars( $tablet ['name'] ).
+		"<br>"."Цена ". htmlspecialchars(number_format(($tablet ['prices']['amount']),1,',',' '))."руб. ".
+		"<br>"."Производитель ". htmlspecialchars($tablet ['vendor']).
+		"<br>"."Количество предложений ".htmlspecialchars( $tablet ['offersCount'])."</p>"; 
+		echo "<br> <a href='".htmlspecialchars($tablet['link'])."'>Подробная информация на яндекс-маркете</a>";
 	}
-		else {
-			echo '<H2> Общие характеристики планшета: </H2>';
-			echo '<p><img src="'.htmlspecialchars($tablet['mainPhoto']['url']).'" width="100"></p>';
-			echo "Планшет ". htmlspecialchars($tablet ['name']) ."<br>"."Цена ". htmlspecialchars($tablet ['prices']['amount']).
-			"<br>"."Производитель ".htmlspecialchars($tablet ['vendor']).
-			"<br>"."Количество предложений ". htmlspecialchars($tablet ['offersCount']); 
-			echo "<br> <a href='".htmlspecialchars($tablet['link'])."'>Подробная информация на яндекс-маркете</a>";	
-			}	
+	else {
+		echo '<H2> Общие характеристики планшета: </H2>';
+		echo '<p><img src="'.htmlspecialchars($tablet['mainPhoto']['url']).'" width="100"></p>';
+		echo "Планшет ". htmlspecialchars($tablet ['name']) .
+		"<br>"."Цена ". htmlspecialchars(number_format(($tablet ['prices']['amount']),1,',',' '))." руб. ".
+		"<br>"."Производитель ".htmlspecialchars($tablet ['vendor']).
+		"<br>"."Количество предложений ". htmlspecialchars($tablet ['offersCount']); 
+		echo "<br> <a href='".htmlspecialchars($tablet['link'])."'>Подробная информация на яндекс-маркете</a>";	
+	}	
 }
+
+
 ?>
 
 </body>
