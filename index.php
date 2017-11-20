@@ -423,7 +423,7 @@ foreach ($data as $tablet){
 		echo '<H2> Общие характеристики планшета: </H2>';
 		echo '<p><img src="'.htmlspecialchars($tablet['mainPhoto']['url']).'" width="100"></p>';
 		echo "<p class='large-group'>"."Планшет ".htmlspecialchars( $tablet ['name'] ).
-		"<br>"."Цена ". htmlspecialchars(number_format(($tablet ['prices']['amount']),1,',',' '))."руб. ".
+		"<br>"."Цена ". htmlspecialchars(number_format(($tablet ['prices']['amount']),0, ',', ' '))."  "."руб. ".
 		"<br>"."Производитель ". htmlspecialchars($tablet ['vendor']).
 		"<br>"."Количество предложений ".htmlspecialchars( $tablet ['offersCount'])."</p>"; 
 		echo "<br> <a href='".htmlspecialchars($tablet['link'])."'>Подробная информация на яндекс-маркете</a>";
@@ -432,7 +432,7 @@ foreach ($data as $tablet){
 		echo '<H2> Общие характеристики планшета: </H2>';
 		echo '<p><img src="'.htmlspecialchars($tablet['mainPhoto']['url']).'" width="100"></p>';
 		echo "Планшет ". htmlspecialchars($tablet ['name']) .
-		"<br>"."Цена ". htmlspecialchars(number_format(($tablet ['prices']['amount']),1,',',' '))." руб. ".
+		"<br>"."Цена ". htmlspecialchars(number_format(($tablet ['prices']['amount']),0, ',', ' '))."  "." руб. ".
 		"<br>"."Производитель ".htmlspecialchars($tablet ['vendor']).
 		"<br>"."Количество предложений ". htmlspecialchars($tablet ['offersCount']); 
 		echo "<br> <a href='".htmlspecialchars($tablet['link'])."'>Подробная информация на яндекс-маркете</a>";	
